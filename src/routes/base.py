@@ -1,9 +1,6 @@
-import os
-from dotenv import load_dotenv
-load_dotenv()
+from fastapi import APIRouter, Depends
 
-from fastapi import APIRouter
-
+from src.helpers.config import Settings, get_settings
 
 base_router = APIRouter(
     prefix='/api/v1',
@@ -11,11 +8,12 @@ base_router = APIRouter(
 )
 
 @base_router.get('/')
-def welcome():
-    app_name = os.getenv('APP_NAME')
-    app_version = os.getenv('APP_VERSION')
+def welcome(app_settings: Settings = Depends(get_settings)):
+    settings_dict = app_settings.model_dump()
+    app_name = settings_dict.get('APP_NAME')
+    app_version = settings_dict.get('APP_VERSION')
 
     return {
-        'app name': app_name,
-        'app version': app_version,
+        'app_name': app_name,
+        'app_version': app_version,
     }

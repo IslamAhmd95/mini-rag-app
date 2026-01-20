@@ -217,3 +217,5 @@ __marimo__/
 
 # More
 notes.md
+src/assets/*
+!src/assets/.gitkeep
