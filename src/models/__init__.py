@@ -1,1 +1,2 @@
-from .enums.ResponseEnums import ResponseMessages
+from .enums.ResponseEnum import ResponseMessages
+from .enums.ExtensionEnum import ExtensionEnum
