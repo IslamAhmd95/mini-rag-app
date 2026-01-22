@@ -6,8 +6,9 @@ from src.helpers.config import get_settings
 
 
 class BaseView:
-    def __init__(self) -> None:
+    def __init__(self, project_id) -> None:
         self.app_settings = get_settings()
+        self.project_id = project_id
         self.base_dir_path = os.path.dirname(os.path.dirname(__file__))
         self.files_dir_path = os.path.join(
             self.base_dir_path,

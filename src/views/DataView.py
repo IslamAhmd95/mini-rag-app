@@ -8,8 +8,8 @@ from src.models import ResponseMessages
 from .ProjectView import ProjectView
 
 class DataView(BaseView):
-    def __init__(self) -> None:
-        super().__init__()
+    def __init__(self, project_id) -> None:
+        super().__init__(project_id)
         self.size_scale=1048576
 
 
@@ -35,7 +35,7 @@ class DataView(BaseView):
     def generate_unique_filepath(self, orig_file_name: str, project_id: str):
 
         random_key = self.generate_random_string()
-        project_dir_path = ProjectView().get_project_dir_path(project_id=project_id)
+        project_dir_path = ProjectView(project_id=project_id).get_project_dir_path()
 
         cleaned_file_name = self.get_clean_file_name(
             orig_file_name=orig_file_name

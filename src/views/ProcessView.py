@@ -10,9 +10,8 @@ from src.models import ExtensionEnum
 
 class ProcessView(BaseView):
     def __init__(self, project_id) -> None:
-        super().__init__()
-        self.project_id = project_id
-        self.project_path = ProjectView().get_project_dir_path(project_id=project_id)
+        super().__init__(project_id)
+        self.project_path = ProjectView(project_id=self.project_id).get_project_dir_path()
 
     def get_file_extention(self, file_id: str):
         return os.path.splitext(file_id)[-1]
