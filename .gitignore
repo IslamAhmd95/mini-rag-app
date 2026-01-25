@@ -217,5 +217,10 @@ __marimo__/
 
 # More
 notes.md
+
 src/assets/*
 !src/assets/.gitkeep
+
+docker/*
+!docker/docker-compose.yml
+!docker/.gitkeep

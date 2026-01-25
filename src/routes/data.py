@@ -10,7 +10,7 @@ from src.models import ResponseMessages
 from src.schemas import ProcessRequest
 
 
-logger = logging.getLogger('uvicorn.error')
+logger = logging.getLogger('uvicorn.error')  # uvicorn.error is the name of this logger and the scope is uvicorn server logs which can be used on several files
 
 data_router = APIRouter(
     prefix='/api/v1/data',
@@ -52,6 +52,7 @@ async def upload_file(project_id: str, file: UploadFile, app_settings: Settings 
 
 @data_router.post('/process/{project_id}')
 async def process_file(project_id: str, process_request: ProcessRequest):
+    
     file_id, chunk_size, overlap_size = process_request.file_id, process_request.chunk_size, process_request.overlap_size
 
     process_view = ProcessView(project_id=project_id)
