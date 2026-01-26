@@ -9,3 +9,6 @@ class ResponseMessages(str, Enum):
     FILE_UPLOAD_FAILED = "file_upload_failed"
     FILE_PROCESS_FAILED = "file_process_failed"
     FILE_PROCESS_SUCCESS = "file_process_successfully"
+    PROJECT_NOT_FOUND = "project_not_found"
+    FILE_NOT_FOUND = "file_not_found"
+    CHUNKS_NOT_FOUND = "chunks_not_found"

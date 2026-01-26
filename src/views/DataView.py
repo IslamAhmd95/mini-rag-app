@@ -17,7 +17,7 @@ class DataView(BaseView):
         if file.content_type not in self.app_settings.FILE_ALLOWED_TYPES:
             return False, ResponseMessages.FILE_TYPE_NOT_SUPPORTED
 
-        if file.size > self.app_settings.FILE_MAX_SIZE * self.size_scale:
+        if file.size is not None and file.size > self.app_settings.FILE_MAX_SIZE * self.size_scale:
             return False, ResponseMessages.FILE_SIZE_EXCEEDED
 
         return True, ResponseMessages.FILE_VALIDATED_SUCCESS
@@ -32,7 +32,7 @@ class DataView(BaseView):
 
         return cleaned_file_name
 
-    def generate_unique_filepath(self, orig_file_name: str, project_id: str):
+    def generate_unique_filepath(self, project_id: str, orig_file_name: str):
 
         random_key = self.generate_random_string()
         project_dir_path = ProjectView(project_id=project_id).get_project_dir_path()
